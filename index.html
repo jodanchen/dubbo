@@ -50,9 +50,9 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Docs<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">User's Guide</a></li>
-                    <li><a href="#">Developer's Guide</a></li>
-                    <li><a href="#">Admin's Guide</a></li>
+                    <li><a href="https://dubbo.gitbooks.io/user-s-guide/content/">User's Guide</a></li>
+                    <li><a href="https://dubbo.gitbooks.io/developer-s-guide/content/">Developer's Guide</a></li>
+                    <li><a href="https://dubbo.gitbooks.io/admin-s-guide/content/">Admin's Guide</a></li>
                   </ul>
                 </li>
                 <li><a href="#about">Releases</a></li>
@@ -83,7 +83,7 @@
       <div class="container">
         <h1>Dubbo &nbsp;&nbsp;&nbsp;<a href="https://github.com/alibaba/dubbo"><i class="small fa fa-github"></i></a></h1>
         <p>Dubbo is a distributed service framework enpowers applications with service import/export capability with high performance RPC.</p>
-        <p style="margin"><a class="btn btn-primary btn-lg" href="#" role="button">Quick Start &raquo;</a></p>
+        <p style="margin"><a class="btn btn-primary btn-lg" href="#quickstart" role="button">Quick Start &raquo;</a></p>
       </div>
     </div>
 
@@ -101,22 +101,21 @@
 
           <p>Dubbo是阿里巴巴SOA服务化治理方案的核心框架，每天为2,000+个服务提供3,000,000,000+次访问量支持，并被广泛应用于阿里巴巴集团的各成员站点：
           </p>
-          <div>
-            <img src="/sources/images/alibaba.png" class="img-rounded">
-            <img src="/sources/images/1688.png" class="img-rounded">
-            <img src="/sources/images/aliexpress.png" class="img-rounded">
-            <img src="/sources/images/aliyun.png" class="img-rounded">
-            <img src="/sources/images/aliloan.png" class="img-rounded">
-            <img src="/sources/images/alibado.png" class="img-rounded">
-            <img src="/sources/images/laiwang.png" class="img-rounded">
-            <img src="/sources/images/lp.png" class="img-rounded">
+          <div style="margin:10px 0 10px 0;">
+            <img src="./sources/images/alibaba.png" class="img-rounded"  style="margin:5px 5px 5px 0;">
+            <img src="./sources/images/1688.png" class="img-rounded"  style="margin:5px 5px 5px 0;">
+            <img src="./sources/images/aliexpress.png" class="img-rounded"  style="margin:5px 5px 5px 0;">
+            <img src="./sources/images/aliyun.png" class="img-rounded"  style="margin:5px 5px 5px 0;">
+            <img src="./sources/images/aliloan.png" class="img-rounded"  style="margin:5px 5px 5px 0;">
+            <img src="./sources/images/alibado.png" class="img-rounded"  style="margin:5px 5px 5px 0;">
+            <img src="./sources/images/laiwang.png" class="img-rounded"  style="margin:5px 5px 5px 0;">
+            <img src="./sources/images/lp.png" class="img-rounded"  style="margin:5px 5px 5px 0;">
           </div>
             <p>自开源后，已有不少非阿里系公司在使用Dubbo，参见：<a href="#"></a>已知用户</p>
-
+            <br/>
             <h4>那么，Dubbo是什么？</h4>
 
             <p>Dubbo |ˈdʌbəʊ| 是一个分布式服务框架，致力于提供高性能和透明化的RPC远程服务调用方案，以及SOA服务治理方案。
-            <br/><br/>
             其核心部分包含:
             <ul class="list-group-item-heading">
               <li>远程通讯: 提供对多种基于长连接的NIO框架抽象封装，包括多种线程模型，序列化，以及“请求-响应”模式的信息交换方式。</li>
@@ -125,6 +124,7 @@
             </ul>
 
             </p>
+          <br/>
           <h4>Dubbo能做什么？</h4>
           <ul class="list-group-item-heading">
             <li>透明化的远程方法调用，就像调用本地方法一样调用远程方法，只需简单配置，没有任何API侵入。</li>
@@ -132,89 +132,88 @@
             <li>服务自动注册与发现，不再需要写死服务提供方地址，注册中心基于接口名查询服务提供者的IP地址，并且能够平滑添加或删除服务提供者。</li>
           </ul>
         </div><!-- /.blog-post -->
+        <hr>
 
+        <!-- *****QUICK START****** -->
         <div class="blog-post">
-          <h2 class="blog-post-title">Quick Start</h2>
-          <p>This guide gets you started with dubbo with a simple working example.</p>
-          <h4>Download the sources(examples)</h4>
-          <p>You’ll need a local copy of the example code to work through this quickstart. Download the demo code from our <a href="https://github.com/alibaba/dubbo">Github repository</a> (the following command clones the entire repository, but you just need the dubbo-demo for this quickstart and other tutorials):
+          <h2 class="blog-post-title"><a name="quickstart">Quick Start</a></h2>
+          <p>This guide gets you started with dubbo with a simple working demo.</p>
+          <h4>Download the sources(demo)</h4>
+          <p>You’ll need a local copy of the example code to work through this quickstart. Download the demo code from our <a href="https://github.com/alibaba/dubbo" target="_blank">Github repository</a> (the following command clones the entire repository, but you just need the dubbo-demo for this quickstart and other tutorials):
           </p>
           <div>
             <pre>
-              <code>
   $ cd ~
   $ # Clone the repository to get the source code.
   $ git clone https://github.com/alibaba/dubbo.git dubbo
   $ git checkout master
-  $ # or: git checkout -b dubbo-2.4.x
-              </code>
+  $ # or: git checkout -b dubbo-2.4.x-dev
             </pre>
           </div>
           <h4>Download the sources(examples)</h4>
           <p>1. Build the whole sources use the following maven command</p>
           <div>
             <pre>
-              <code>
   $ cd ~/dubbo
   $ mvn clean install -Dmaven.test.skip
   $ # The demo code for this quickstart all stay in the `dubbo-demo` folder
   $ cd ./dubbo-demo
   $ ls
-              </code>
             </pre>
           </div>
           <p>2. Run demo-provider. Start the provider and export service</p>
           <div>
             <pre>
-              <code>
   $ # Navigate to the provider part
   $ cd ~/dubbo/demo-demo/dubbo-demo-provider/target
   $ # unpack
-  $ tar zxvf dubbo-demo-provider-xxx-assembly.tar.gz
-  $ cd dubbo-demo-provider-xxx/bin
+  $ tar zxvf dubbo-demo-provider-2.5.4-SNAPSHOT-assembly.tar.gz
+  $ cd dubbo-demo-provider-2.5.4-SNAPSHOT/bin
   $ ls
-              </code>
             </pre>
           </div>
           <div>
             <pre>
-              <code>
   $ # Start the provider
   $ ./start.sh
-              </code>
             </pre>
           </div>
           <p>3. Run demo-consumer. Start the consumer and consume service provided by the provider above</p>
           <div>
             <pre>
-              <code>
   $ # Navigate to the consumer part
   $ cd ~/dubbo/demo-demo/dubbo-demo-consumer/target
   $ # unpack
-  $ tar zxvf dubbo-demo-consumer-xxx-assembly.tar.gz
-  $ cd dubbo-demo-consumer-xxx/bin
+  $ tar zxvf dubbo-demo-consumer-2.5.4-SNAPSHOT-assembly.tar.gz
+  $ cd dubbo-demo-consumer-2.5.4-SNAPSHOT/bin
   $ ls
-              </code>
             </pre>
           </div>
           <div>
             <pre>
-              <code>
   $ # Start the consumer
   $ ./start.sh
-              </code>
             </pre>
           </div>
+          <hr>
 
-          <h2>Build this demo step-by-step</h2>
+
+          <!-- ********Build this demo step by step****** -->
+          <h2>An explanation for Quick Start</h2>
 
           <p>
-            Demo中我们使用的是Spring配置方式，对业务逻辑本身没有任何侵入，只需用Spring加载Dubbo的配置即可。这也是Dubbo推荐的配置方式，要使用API配置请参考<a href="#">PI配置</a>
+            下面，让我们从代码层面看一下Quick Start示例工程是如何实现的。<br/>
+            开始前请注意：
+          <ul class="list-group-item-heading">
+            <li>使用的是Dubbo推荐的<a href="https://dubbo.gitbooks.io/user-s-guide/content/configuration/xml.html" target="_blank">Spring配置方式</a>。要使用API配置请参考<a href="https://dubbo.gitbooks.io/user-s-guide/content/configuration/api.html">API配置</a></li>
+            <li>使用广播模式实现的服务自动注册与发现，生产环境中，一般要部署单独的<a href="https://dubbo.gitbooks.io/user-s-guide/content/reference-registry/introduction.html" target="_blank">注册中心</a></li>
+          </ul>
+
           </p>
+          <br/>
           <h4>定义接口</h4>
           <p>定义服务接口: (该接口需单独打包，在服务提供方和消费方共享)</p>
           <pre>
-              <code>
   package com.alibaba.dubbo.demo;
  
 public interface DemoService {
@@ -222,13 +221,11 @@ public interface DemoService {
     String sayHello(String name);
  
 }
-              </code>
             </pre>
+          <br/>
           <h4>Provider实现</h4>
           <p>服务提供方实现接口（对服务消费方隐藏实现）：</p>
           <pre>
-              <code>
-
 package com.alibaba.dubbo.demo.provider;
 
 import com.alibaba.dubbo.demo.DemoService;
@@ -240,11 +237,9 @@ public class DemoServiceImpl implements DemoService {
     }
 
 }
-              </code>
             </pre>
           <p>用Spring配置声明暴露服务：</p>
           <pre>
-              <code>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
     xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
@@ -267,11 +262,9 @@ public class DemoServiceImpl implements DemoService {
     &lt;bean id=&quot;demoService&quot; class=&quot;com.alibaba.dubbo.demo.provider.DemoServiceImpl&quot; /&gt;
 
 &lt;/beans&gt;
-              </code>
             </pre>
           <p>加载Spring配置：</p>
           <pre>
-              <code>
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Provider {
@@ -284,13 +277,11 @@ public class Provider {
     }
 
 }
-              </code>
             </pre>
+          <br/>
           <h4>Consumer实现</h4>
           <p>通过Spring配置引用远程服务：</p>
           <pre>
-              <code>
-
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
     xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
@@ -307,11 +298,9 @@ public class Provider {
     &lt;dubbo:reference id=&quot;demoService&quot; interface=&quot;com.alibaba.dubbo.demo.DemoService&quot; /&gt;
 
 &lt;/beans&gt;
-              </code>
             </pre>
           <p>加载Spring配置，并调用远程服务：(也可以使用IoC注入)</p>
           <pre>
-              <code>
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.alibaba.dubbo.demo.DemoService;
 
@@ -328,33 +317,39 @@ public class Consumer {
     }
 
 }
-              </code>
             </pre>
         </div><!-- /.blog-post -->
       </div><!-- /.blog-main -->
 
-      <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-        <div class="sidebar-module sidebar-module-inset">
-          <h4>About</h4>
-          <ul class="list-unstyled">
-            <li><a href="#">User's Guide</a></li>
-            <li><a href="#">Developer's Guide</a></li>
-            <li><a href="#">Admin's Guide</a></li>
-            <li><a href="#">Training</a></li>
-            <li><a href="#">Releases</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Community</a></li>
-            <li><a href="#">GitHub</a></li>
-          </ul>
+      <div style="margin-left:30px;" class="col-sm-3 col-sm-offset-0 blog-sidebar">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Documentation</h3>
+          </div>
+          <div class="panel-body">
+            <ol class="list-unstyled">
+              <li><a href="https://dubbo.gitbooks.io/user-s-guide/content/">User's Guide</a></li>
+              <li><a href="https://dubbo.gitbooks.io/developer-s-guide/content/">Developer's Guide</a></li>
+              <li><a href="https://dubbo.gitbooks.io/admin-s-guide/content/">Admin's Guide</a></li>
+            </ol>
+          </div>
         </div>
 
-        <div class="sidebar-module">
-          <h4>Elsewhere</h4>
-          <ol class="list-unstyled">
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">Facebook</a></li>
-          </ol>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Releases</h3>
+          </div>
+          <div class="panel-body">
+            Release Infos
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Others</h3>
+          </div>
+          <div class="panel-body">
+
+          </div>
         </div>
       </div><!-- /.blog-sidebar -->
 

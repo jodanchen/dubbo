@@ -9,6 +9,14 @@ body {
 h1 {
   font-size:50px;
 }
+p {
+  font-size:16px;
+  line-height:2.0;
+}
+ul li {
+  font-size:16px;
+  line-height:2.0;
+}
 
 
 /* CUSTOMIZE THE NAVBAR
@@ -134,4 +142,6 @@ h1 {
   .featurette-heading {
     margin-top: 120px;
   }
+
+
 }
