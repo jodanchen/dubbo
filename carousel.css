@@ -6,6 +6,9 @@ body {
   padding-bottom: 40px;
   color: #5a5a5a;
 }
+h1 {
+  font-size:50px;
+}
 
 
 /* CUSTOMIZE THE NAVBAR
