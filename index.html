@@ -100,8 +100,17 @@
           <h2 class="blog-post-title">Overview</h2>
 
           <p>Dubbo是阿里巴巴SOA服务化治理方案的核心框架，每天为2,000+个服务提供3,000,000,000+次访问量支持，并被广泛应用于阿里巴巴集团的各成员站点：
-            <br/><img style="width:895px;" src="./sources/images/overview.png" />
           </p>
+          <div>
+            <img src="/sources/images/alibaba.png" class="img-rounded">
+            <img src="/sources/images/1688.png" class="img-rounded">
+            <img src="/sources/images/aliexpress.png" class="img-rounded">
+            <img src="/sources/images/aliyun.png" class="img-rounded">
+            <img src="/sources/images/aliloan.png" class="img-rounded">
+            <img src="/sources/images/alibado.png" class="img-rounded">
+            <img src="/sources/images/laiwang.png" class="img-rounded">
+            <img src="/sources/images/lp.png" class="img-rounded">
+          </div>
             <p>自开源后，已有不少非阿里系公司在使用Dubbo，参见：<a href="#"></a>已知用户</p>
 
             <h4>那么，Dubbo是什么？</h4>
@@ -126,83 +135,201 @@
 
         <div class="blog-post">
           <h2 class="blog-post-title">Quick Start</h2>
+          <p>This guide gets you started with dubbo with a simple working example.</p>
+          <h4>Download the sources(examples)</h4>
+          <p>You’ll need a local copy of the example code to work through this quickstart. Download the demo code from our <a href="https://github.com/alibaba/dubbo">Github repository</a> (the following command clones the entire repository, but you just need the dubbo-demo for this quickstart and other tutorials):
+          </p>
+          <div>
+            <pre>
+              <code>
+  $ cd ~
+  $ # Clone the repository to get the source code.
+  $ git clone https://github.com/alibaba/dubbo.git dubbo
+  $ git checkout master
+  $ # or: git checkout -b dubbo-2.4.x
+              </code>
+            </pre>
+          </div>
+          <h4>Download the sources(examples)</h4>
+          <p>1. Build the whole sources use the following maven command</p>
+          <div>
+            <pre>
+              <code>
+  $ cd ~/dubbo
+  $ mvn clean install -Dmaven.test.skip
+  $ # The demo code for this quickstart all stay in the `dubbo-demo` folder
+  $ cd ./dubbo-demo
+  $ ls
+              </code>
+            </pre>
+          </div>
+          <p>2. Run demo-provider. Start the provider and export service</p>
+          <div>
+            <pre>
+              <code>
+  $ # Navigate to the provider part
+  $ cd ~/dubbo/demo-demo/dubbo-demo-provider/target
+  $ # unpack
+  $ tar zxvf dubbo-demo-provider-xxx-assembly.tar.gz
+  $ cd dubbo-demo-provider-xxx/bin
+  $ ls
+              </code>
+            </pre>
+          </div>
+          <div>
+            <pre>
+              <code>
+  $ # Start the provider
+  $ ./start.sh
+              </code>
+            </pre>
+          </div>
+          <p>3. Run demo-consumer. Start the consumer and consume service provided by the provider above</p>
+          <div>
+            <pre>
+              <code>
+  $ # Navigate to the consumer part
+  $ cd ~/dubbo/demo-demo/dubbo-demo-consumer/target
+  $ # unpack
+  $ tar zxvf dubbo-demo-consumer-xxx-assembly.tar.gz
+  $ cd dubbo-demo-consumer-xxx/bin
+  $ ls
+              </code>
+            </pre>
+          </div>
+          <div>
+            <pre>
+              <code>
+  $ # Start the consumer
+  $ ./start.sh
+              </code>
+            </pre>
+          </div>
+
+          <h2>Build this demo step-by-step</h2>
+
           <p>
-            <blockquote>Dubbo采用全Spring配置方式，透明化接入应用，对应用没有任何API侵入，只需用Spring加载Dubbo的配置即可，Dubbo基于Spring的Schema扩展进行加载。</blockquote>
-            如果不想使用Spring配置，而希望通过API的方式进行调用（不推荐），请参见：<a href="#">API配置</a>
-
-            <h4>服务提供者</h4>
-            完整安装步骤，请参见：<a href="#">示例提供者安装</a>
-            定义服务接口: (该接口需单独打包，在服务提供方和消费方共享)
-
-            DemoService.java
+            Demo中我们使用的是Spring配置方式，对业务逻辑本身没有任何侵入，只需用Spring加载Dubbo的配置即可。这也是Dubbo推荐的配置方式，要使用API配置请参考<a href="#">PI配置</a>
+          </p>
+          <h4>定义接口</h4>
+          <p>定义服务接口: (该接口需单独打包，在服务提供方和消费方共享)</p>
           <pre>
-            package com.alibaba.dubbo.demo;
-
-            public interface DemoService {
-
-            String sayHello(String name);
-
-            }
-            在服务提供方实现接口：(对服务消费方隐藏实现)
-
-            DemoServiceImpl.java
-            package com.alibaba.dubbo.demo.provider;
-
-            import com.alibaba.dubbo.demo.DemoService;
-
-            public class DemoServiceImpl implements DemoService {
-
-            public String sayHello(String name) {
-            return "Hello " + name;
-            }
-
-            }
-          </pre>
-            用Spring配置声明暴露服务：
+              <code>
+  package com.alibaba.dubbo.demo;
+ 
+public interface DemoService {
+ 
+    String sayHello(String name);
+ 
+}
+              </code>
+            </pre>
+          <h4>Provider实现</h4>
+          <p>服务提供方实现接口（对服务消费方隐藏实现）：</p>
           <pre>
-            provider.xml
-            &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-            &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-                   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-                   xmlns:dubbo=&quot;http://code.alibabatech.com/schema/dubbo&quot;
-                   xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd&quot;&gt;
+              <code>
 
-              &lt;!-- 提供方应用信息，用于计算依赖关系 --&gt;
-              &lt;dubbo:application name=&quot;hello-world-app&quot;  /&gt;
+package com.alibaba.dubbo.demo.provider;
 
-              &lt;!-- 使用multicast广播注册中心暴露服务地址 --&gt;
-              &lt;dubbo:registry address=&quot;multicast://224.5.6.7:1234&quot; /&gt;
+import com.alibaba.dubbo.demo.DemoService;
 
-              &lt;!-- 用dubbo协议在20880端口暴露服务 --&gt;
-              &lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot; /&gt;
+public class DemoServiceImpl implements DemoService {
 
-              &lt;!-- 声明需要暴露的服务接口 --&gt;
-              &lt;dubbo:service interface=&quot;com.alibaba.dubbo.demo.DemoService&quot; ref=&quot;demoService&quot; /&gt;
+    public String sayHello(String name) {
+        return "Hello " + name;
+    }
 
-              &lt;!-- 和本地bean一样实现服务 --&gt;
-              &lt;bean id=&quot;demoService&quot; class=&quot;com.alibaba.dubbo.demo.provider.DemoServiceImpl&quot; /&gt;
-
-            &lt;/beans&gt;
-          </pre>
-            加载Spring配置：
+}
+              </code>
+            </pre>
+          <p>用Spring配置声明暴露服务：</p>
           <pre>
-            Provider.java
-            import org.springframework.context.support.ClassPathXmlApplicationContext;
+              <code>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:dubbo=&quot;http://code.alibabatech.com/schema/dubbo&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd&quot;&gt;
 
-            public class Provider {
+    &lt;!-- 提供方应用信息，用于计算依赖关系 --&gt;
+    &lt;dubbo:application name=&quot;hello-world-app&quot;  /&gt;
 
-            public static void main(String[] args) throws Exception {
-            ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"http://dubbo.io/provider.xml"});
-            context.start();
+    &lt;!-- 使用multicast广播注册中心暴露服务地址 --&gt;
+    &lt;dubbo:registry address=&quot;multicast://224.5.6.7:1234&quot; /&gt;
 
-            System.in.read(); // 按任意键退出
-            }
+    &lt;!-- 用dubbo协议在20880端口暴露服务 --&gt;
+    &lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot; /&gt;
 
-            }
-          </pre>
+    &lt;!-- 声明需要暴露的服务接口 --&gt;
+    &lt;dubbo:service interface=&quot;com.alibaba.dubbo.demo.DemoService&quot; ref=&quot;demoService&quot; /&gt;
 
-            想了解更多？阅读一下《用户指南》吧~~　</p>
+    &lt;!-- 和本地bean一样实现服务 --&gt;
+    &lt;bean id=&quot;demoService&quot; class=&quot;com.alibaba.dubbo.demo.provider.DemoServiceImpl&quot; /&gt;
 
+&lt;/beans&gt;
+              </code>
+            </pre>
+          <p>加载Spring配置：</p>
+          <pre>
+              <code>
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Provider {
+
+    public static void main(String[] args) throws Exception {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"http://10.20.160.198/wiki/display/dubbo/provider.xml"});
+        context.start();
+
+        System.in.read(); // 按任意键退出
+    }
+
+}
+              </code>
+            </pre>
+          <h4>Consumer实现</h4>
+          <p>通过Spring配置引用远程服务：</p>
+          <pre>
+              <code>
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+    xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xmlns:dubbo=&quot;http://code.alibabatech.com/schema/dubbo&quot;
+    xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd&quot;&gt;
+
+    &lt;!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 --&gt;
+    &lt;dubbo:application name=&quot;consumer-of-helloworld-app&quot;  /&gt;
+
+    &lt;!-- 使用multicast广播注册中心暴露发现服务地址 --&gt;
+    &lt;dubbo:registry address=&quot;multicast://224.5.6.7:1234&quot; /&gt;
+
+    &lt;!-- 生成远程服务代理，可以和本地bean一样使用demoService --&gt;
+    &lt;dubbo:reference id=&quot;demoService&quot; interface=&quot;com.alibaba.dubbo.demo.DemoService&quot; /&gt;
+
+&lt;/beans&gt;
+              </code>
+            </pre>
+          <p>加载Spring配置，并调用远程服务：(也可以使用IoC注入)</p>
+          <pre>
+              <code>
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.alibaba.dubbo.demo.DemoService;
+
+public class Consumer {
+
+    public static void main(String[] args) throws Exception {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"http://10.20.160.198/wiki/display/dubbo/consumer.xml"});
+        context.start();
+
+        DemoService demoService = (DemoService)context.getBean("demoService"); // 获取远程服务代理
+        String hello = demoService.sayHello("world"); // 执行远程方法
+
+        System.out.println( hello ); // 显示调用结果
+    }
+
+}
+              </code>
+            </pre>
         </div><!-- /.blog-post -->
       </div><!-- /.blog-main -->
 
@@ -236,7 +363,7 @@
       <!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017 Alibaba&middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        <p>&copy; 2017 Alibaba Dubbo-teams</p>
       </footer>
 
     </div><!-- /.container -->
